@@ -1,15 +1,17 @@
 package stepdefinitions;
 
-import base.BaseTest;
+import com.microsoft.playwright.Page;
 import enums.EnvConfig;
 import io.cucumber.java.en.*;
 import pages.LoginPage;
 
-public class LoginSteps extends BaseTest {
-    LoginPage loginPage;
+public class LoginSteps {
+    private Page page;
+    private LoginPage loginPage;
 
     @Given("I navigate to the login page")
     public void navigateToLoginPage() {
+        page = Hooks.page;  // get shared page from Hooks
         loginPage = new LoginPage(page);
         loginPage.navigateTo(EnvConfig.LOGIN_URL.getValue());
     }
@@ -24,6 +26,6 @@ public class LoginSteps extends BaseTest {
 
     @Then("I should be logged in successfully")
     public void verifyLoginSuccess() {
-        assert loginPage.getPage().url().contains("customer/account");
+        assert page.url().contains("customer/account");
     }
 }

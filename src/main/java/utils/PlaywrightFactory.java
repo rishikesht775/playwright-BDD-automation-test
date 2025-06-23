@@ -17,6 +17,8 @@ public class PlaywrightFactory {
     }
 
     public void close() {
-        if (playwright != null) playwright.close();
+        if (playwright != null) {
+            playwright.close();
+        }
     }
 }

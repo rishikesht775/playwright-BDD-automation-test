@@ -1,18 +1,24 @@
 package stepdefinitions;
 
-import base.BaseTest;
+import com.microsoft.playwright.Page;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import utils.PlaywrightFactory;
 
-public class Hooks extends BaseTest {
+public class Hooks {
+    public static Page page;  // Shared static field
+    private PlaywrightFactory pf;
 
     @Before
     public void setUp() {
-        initBrowser();
+        pf = new PlaywrightFactory();
+        page = pf.initBrowser();
     }
 
     @After
-    public void tearDownScenario() {
-        tearDown();
+    public void tearDown() {
+        if (pf != null) {
+            pf.close();
+        }
     }
 }
