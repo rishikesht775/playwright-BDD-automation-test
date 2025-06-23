@@ -14,7 +14,10 @@ public class LoginPage {
     }
 
     public void navigateTo(String url) {
+    	System.out.println("Is page null? " + (page == null));
+
         page.navigate(url);
+        
     }
 
     public void login(String email, String password) {
